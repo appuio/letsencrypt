@@ -1,0 +1,12 @@
+{
+	"ImportPath": "github.com/appuio/letsencrypt",
+	"GoVersion": "go1.6",
+	"GodepVersion": "v74",
+	"Deps": [
+		{
+			"ImportPath": "github.com/gorhill/cronexpr",
+			"Comment": "1.0.0-3-gf098431",
+			"Rev": "f0984319b44273e83de132089ae42b1810f4933b"
+		}
+	]
+}
