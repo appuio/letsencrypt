@@ -1,3 +1,6 @@
 [submodule "acme-tiny"]
 	path = acme-tiny
 	url = https://github.com/diafygi/acme-tiny
+[submodule "vendor/github.com/gorhill/cronexpr"]
+	path = vendor/github.com/gorhill/cronexpr
+	url = https://github.com/gorhill/cronexpr
