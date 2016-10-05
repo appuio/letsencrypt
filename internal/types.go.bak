@@ -1,0 +1,24 @@
+package internal
+
+type Routes struct {
+  Items []*Route
+}
+
+type Route struct {
+  Metadata *RouteMetadata
+  Spec *RouteSpec
+}
+
+type RouteMetadata struct {
+  Name string
+  Namespace string
+}
+
+type RouteSpec struct {
+  Host string
+  Tls *RouteTls
+}
+
+type RouteTls struct {
+  Termination string
+}

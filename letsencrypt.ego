@@ -1,0 +1,68 @@
+<%! func LetsencryptTmpl(w io.Writer, r *Registry) error %>
+
+<%%  %%>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>APPUiO Let&apos;s Encrypt</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Patua+One%7COpen+Sans:400,400italic" type="text/css">
+
+<style type="text/css">
+html{
+  height : 100%;
+}
+
+body{
+  position    : relative;
+  min-height  : 100%;
+  margin      : 0;
+  padding     : 0;
+  font-family : 'Open Sans',sans-serif;
+  line-height : 1.5;
+}
+
+.pre {
+  white-space: pre-wrap;
+  -moz-user-select:text;
+}
+
+ul {
+  padding-left: 1.5em;
+}
+
+    </style>
+</head>
+
+<body>
+
+You have access to the following routes:
+
+<% stack := []RegistryItem{r} %>
+<ul class="treeView">
+  <% for len(stack) > 0 { %>
+    <% item := stack[0]; stack = stack[1:] %>
+    <% if item == nil { %>
+      </ul></li>
+      <% continue %>
+    <% } %>
+
+       <% if len(stack) == 0 || stack[0] != nil { %>
+         <li>
+       <% } else { %>
+         <li class="lastChild">
+       <% } %>
+     <span class="pre"><%= item %></span>
+    <% if len(item.Children()) > 0 { %>
+     <% stack = append([]RegistryItem{nil}, stack...); stack = append(item.Children(), stack...) %>
+     <ul class="collapsibleList">
+     <% } else { %>
+       </li>
+    <% } %>
+  <% } %>
+</ul>     
+</body>
+
+</html> 
