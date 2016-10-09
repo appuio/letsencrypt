@@ -1,4 +1,4 @@
-export GOPATH=$(HOME)/gocode
+export GOPATH=/go
 
 all: ego.go
 	go install ./...
@@ -7,4 +7,4 @@ $(GOPATH)/bin/ego:
 	go get github.com/benbjohnson/ego/cmd/ego
 
 ego.go: $(GOPATH)/bin/ego letsencrypt.ego
-	$(GOPATH)/bin/ego --package=letsencrypt .
+	$(GOPATH)/bin/ego --package=main .

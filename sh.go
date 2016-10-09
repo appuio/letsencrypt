@@ -23,9 +23,19 @@ func (proc *proc) Stdout() string {
   return proc.stdout
 }
 
+func (proc *proc) StdoutBytes() []byte {
+  proc.CheckErrors()
+  return []byte(proc.stdout)
+}
+
 func (proc *proc) StdoutLines() []string {
   proc.CheckErrors()
   return strings.Split(proc.stdout, "\n")
+}
+
+func (proc *proc) Stderr() string {
+  proc.CheckErrors()
+  return proc.stderr
 }
 
 func (proc *proc) Err() error {

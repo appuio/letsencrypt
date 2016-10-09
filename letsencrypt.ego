@@ -1,68 +1,39 @@
-<%! func LetsencryptTmpl(w io.Writer, r *Registry) error %>
-
-<%%  %%>
-
+<%! func LetsencryptTmpl(w io.Writer, projects []Project) error %>
 
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>APPUiO Let&apos;s Encrypt</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Patua+One%7COpen+Sans:400,400italic" type="text/css">
+  <head>
+    <meta charset="UTF-8">
+    <title>APPUiO Let&apos;s Encrypt</title>
 
-<style type="text/css">
-html{
-  height : 100%;
-}
-
-body{
-  position    : relative;
-  min-height  : 100%;
-  margin      : 0;
-  padding     : 0;
-  font-family : 'Open Sans',sans-serif;
-  line-height : 1.5;
-}
-
-.pre {
-  white-space: pre-wrap;
-  -moz-user-select:text;
-}
-
-ul {
-  padding-left: 1.5em;
-}
-
+    <style type="text/css">
+      td
+      {
+        padding:0 15px 0 15px;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
+    <h1>APPUiO Let's Encrypt</h1>
 
-You have access to the following routes:
+    You have access to the following routes:
 
-<% stack := []RegistryItem{r} %>
-<ul class="treeView">
-  <% for len(stack) > 0 { %>
-    <% item := stack[0]; stack = stack[1:] %>
-    <% if item == nil { %>
-      </ul></li>
-      <% continue %>
+    <% for _, project := range projects { %>
+      <section>
+        <h4><%= project.Name %></h4>
+        <p>
+          <table>
+          <% for _, route := range project.Routes { %>
+            <tr>
+              <td><%= route.Metadata.Name %></td>
+              <td><%= route.Spec.Host %></td>
+              <td><%= route.Spec.Tls.Termination %></td>
+            </tr>
+          <% } %>
+          </table>
+        </p>
+      </section>
     <% } %>
-
-       <% if len(stack) == 0 || stack[0] != nil { %>
-         <li>
-       <% } else { %>
-         <li class="lastChild">
-       <% } %>
-     <span class="pre"><%= item %></span>
-    <% if len(item.Children()) > 0 { %>
-     <% stack = append([]RegistryItem{nil}, stack...); stack = append(item.Children(), stack...) %>
-     <ul class="collapsibleList">
-     <% } else { %>
-       </li>
-    <% } %>
-  <% } %>
-</ul>     
-</body>
-
+  </body>
 </html> 
