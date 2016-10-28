@@ -47,7 +47,7 @@
       "kind": "ImageStream",
       "apiVersion": "v1",
       "metadata": {
-        "name": "ose-haproxy-router",
+        "name": "origin-haproxy-router",
         "creationTimestamp": null,
         "labels": {
           "app": "letsencrypt"
