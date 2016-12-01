@@ -362,7 +362,6 @@
       },
       "spec": {
         "host": "${LETSENCRYPT_HOST}",
-        "path": "/.well-known/acme-challenge",
         "to": {
           "kind": "Service",
           "name": "letsencrypt"
