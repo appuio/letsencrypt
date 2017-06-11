@@ -1,4 +1,4 @@
-FROM centos:7
+FROM registry.access.redhat.com/rhel7:latest
 
 MAINTAINER APPUiO Team
 
@@ -15,10 +15,10 @@ RUN rpm -ihv https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.
 ADD . /go/src/github.com/appuio/letsencrypt/
 
 RUN export GOPATH=/go && \
-    yum -y install golang-bin && \
+    yum -y --enablerepo=rhel-7-server-optional-rpms install golang-bin && \   
     cd /usr/local/letsencrypt && \
     go install github.com/appuio/letsencrypt && \
-    yum -y history undo last && \
+    yum -y history undo last && \  
     yum clean all
 
 USER 1001
