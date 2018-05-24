@@ -6,7 +6,7 @@ RUN rpm -ihv https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.
     yum -y install openssl jq && \
     yum clean all && \
     mkdir -p /srv/.well-known/acme-challenge /var/lib/letsencrypt && \
-    chmod 775 /srv/.well-known/acme-challenge && \  
+    chmod 775 /srv/.well-known/acme-challenge && \
     cd /usr/local/bin && \
     curl -O https://console.appuio.ch/console/extensions/clients/linux/oc && \
     chmod 755 /usr/local/bin/oc && \
@@ -19,7 +19,8 @@ RUN export GOPATH=/go && \
     cd /usr/local/letsencrypt && \
     go install github.com/appuio/letsencrypt && \
     yum -y history undo last && \
-    yum clean all
+    yum clean all && \
+    chmod g+w /usr/local/letsencrypt/bin/*
 
 USER 1001
 
